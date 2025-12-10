@@ -51,6 +51,7 @@ pub async fn process_update_request(
 
     let merge_commit = fetch_recent_commit(&base_url, &token).await?;
     let diff = fetch_diff(&base_url, &last_commit, &merge_commit, &token).await?;
+    info!(target:get_log_target(), "The fetched diff is :: {}" , diff);
     info!(target:get_log_target(), "Fetched diff from GitHub");
 
     for (cloud_provider, project, hash, status) in extract_diff_parts(&diff) {
