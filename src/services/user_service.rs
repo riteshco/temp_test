@@ -57,6 +57,7 @@ pub fn create_user(user: &str) -> io::Result<()> {
 }
 
 pub fn add_user_to_group(user: &str, group: &str) -> io::Result<()> {
+    info!(target:get_log_target() , "Processing {} user to add in the group {}" , user , group);
     if !user_exists(user)? {
         info!(target:get_log_target(), "User '{}' does not exist. Creating user...", user);
         create_user(user)?;
